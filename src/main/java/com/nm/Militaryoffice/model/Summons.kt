@@ -5,14 +5,27 @@ import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
-class Summons(@NotNull summons_id: Int,
-              @NotNull conscription_id: Int,
-              @NotNull id: Long,
-              @NotNull creation_date: Date,
-              @NotEmpty @Size(max = 600) content: String,
-              @NotEmpty @Size(max = 300) who_made_summons: String,
-              @NotNull appearance_datetime: Date,
-              @NotEmpty @Size(max = 100) destination_address: String,
-              is_received: Boolean?,
-              is_appeared: Boolean?
-              )
+data class Summons(@NotNull var summons_id: Int,
+              @NotNull var conscription_id: Int,
+              @NotNull var id: Long,
+              @NotNull var creation_date: Date,
+              @NotEmpty @Size(max = 600) var content: String,
+              @NotEmpty @Size(max = 300) var who_made_summons: String,
+              @NotNull var appearance_datetime: Date,
+              @NotEmpty @Size(max = 100) var destination_address: String,
+              var is_received: Boolean?,
+              var is_appeared: Boolean?
+              ) {
+    constructor() : this(
+        0,
+        0,
+        0,
+        Date(),
+        "",
+        "",
+        Date(),
+        "",
+        false,
+        false
+    )
+}
