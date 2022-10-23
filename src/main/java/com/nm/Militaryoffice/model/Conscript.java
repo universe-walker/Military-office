@@ -70,6 +70,10 @@ public class Conscript {
         this.sportsCategory = sportsCategory;
     }
 
+    public String getFullname() {
+        return name + " " + patronymic + " " + surname;
+    }
+
     public String getSeriesAndNumber() {
         return seriesAndNumber;
     }
