@@ -2,6 +2,8 @@ plugins {
 	id 'org.springframework.boot' version '2.7.2'
 	id 'io.spring.dependency-management' version '1.0.12.RELEASE'
 	id 'java'
+	id "org.flywaydb.flyway" version "9.0.1"
+	id 'org.jetbrains.kotlin.jvm' version '1.7.20'
 }
 
 group = 'com.nm'
@@ -23,8 +25,33 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'org.flywaydb:flyway-core'
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+	implementation "org.jetbrains.kotlin:kotlin-reflect:1.7.10"
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+flyway {
+	url = 'jdbc:postgresql://localhost/military_office'
+	user = 'postgres'
+	password = '2307'
+	schemas = ['schema1', 'schema2', 'schema3']
+	placeholders = [
+			'keyABC': 'valueXYZ',
+			'otherplaceholder': 'value123'
+	]
+}
+compileKotlin {
+	kotlinOptions {
+		jvmTarget = "1.8"
+	}
+}
+compileTestKotlin {
+	kotlinOptions {
+		jvmTarget = "1.8"
+	}
+}
+
