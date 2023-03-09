@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Военком | Создание решения комиссии</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link th:href="@{/css/common.css}" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+    <div th:replace="~{fragments/navbar}"></div>
+    <main class="main">
+        <div class="container">
+            <h4 class="text-center mt-3">Создание решения комиссии</h4>
+            <h5 class="text-center" th:text="${conscriptFullname}"></h5>
+            <form th:action="@{/action/conscript/__${conscriptId}__/create/commission-decision}" th:object="${commissionDecision}" method="POST">
+                <div class="form-group col-5">
+                    <div class="errors" th:if="${#fields.hasAnyErrors()}">
+                        <h5 class="form-error">Ошибка!</h5>
+                        <ul th:each="err : ${#fields.allErrors()}">
+                            <li th:text="${err}" class="form-error" />
+                        </ul>
+                    </div>
+                    <div class="mb-3">
+                        <label for="decision_text" class="form-label">Текст решения</label>
+                        <textarea id="decision_text" name="decision_text" rows="3" class="form-control"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="organisation-that-made-decision" class="form-label">Военный комиссариат, который принял решение</label>
+                        <input id="organisation-that-made-decision" name="organisation_that_made_decision" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="commissioner-fullname" class="form-label">ФИО военного комиссара</label>
+                        <input id="commissioner-fullname" name="commissioner_fullname" type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <input id="is-enlistment" name="is_enlistment" type="checkbox" class="form-check-input">
+                        <label for="is-enlistment" class="form-check-label">Отправка на службу (да/нет)</label>
+                    </div>
+                    <div class="mb-3">
+                        <input id="is-conscript-signed" name="is_conscript_signed" type="checkbox" class="form-check-input">
+                        <label for="is-conscript-signed" class="form-check-label">Призывник подписал (да/нет)</label>
+                    </div>
+                    <input type="hidden" name="id" th:value="${conscriptId}">
+                    <button class="btn btn-success mb-3" type="submit">Создать</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <div th:replace="~{fragments/footer}"></div>
+</div>
+</body>
+</html>

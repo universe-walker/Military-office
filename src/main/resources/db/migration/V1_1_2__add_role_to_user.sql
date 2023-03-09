@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS user_roles;
+
+DROP TABLE IF EXISTS t_role;
+
+DROP TABLE IF EXISTS role;
+
+ALTER TABLE IF EXISTS t_user
+    ADD COLUMN IF NOT EXISTS role varchar(40);
