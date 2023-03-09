@@ -3,6 +3,7 @@ package com.nm.Militaryoffice.repository;
 import com.nm.Militaryoffice.model.Postponement;
 import com.nm.Militaryoffice.repository.mapper.PostponementMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -25,5 +26,29 @@ public class PostponementRepository {
                         new PostponementMapper(),
                         conscriptId
                 );
+    }
+
+    public void createPostponement(Long conscriptId, Postponement postponement) {
+        var sql = """
+                INSERT INTO Postponement (
+                    id,
+                    paragraph_of_document,
+                    postponement_start_date,
+                    postponement_end_date
+                )
+                VALUES (
+                    :id,
+                    :paragraph_of_document,
+                    :postponement_start_date,
+                    :postponement_end_date
+                )
+                """;
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource()
+                .addValue("id", conscriptId)
+                .addValue("paragraph_of_document", postponement.getParagraph_of_document())
+                .addValue("postponement_start_date",postponement.getPostponement_start_date())
+                .addValue("postponement_end_date", postponement.getPostponement_end_date());
+
+        namedJdbcTemplate.update(sql, parameterSource);
     }
 }

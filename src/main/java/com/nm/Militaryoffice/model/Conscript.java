@@ -1,5 +1,7 @@
 package com.nm.Militaryoffice.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -10,32 +12,33 @@ public class Conscript {
     private Long id;
     @Size(max = 9)
     private String seriesAndNumber;
-    @NotEmpty
+    @NotEmpty(message = "Поле 'пасспорт' не может быть пустым")
     @Size(min = 10, max = 10)
     private String passport;
-    @NotEmpty
+    @NotEmpty(message = "Поле 'имя' не может быть пустым")
     @Size(min = 1, max = 30)
     private String name;
     @Size(max = 30)
     private String patronymic;
-    @NotEmpty
+    @NotEmpty(message = "Поле 'фамилия' не может быть пустым")
     @Size(max = 50)
     private String surname;
-    @NotEmpty
+    @NotEmpty(message = "Поле 'пол' не может быть пустым")
     @Size(min = 1, max = 1)
     private String gender;
-    @NotNull
+    @NotNull(message = "Поле 'дата рождения' не может быть пустым")
     @Past
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, fallbackPatterns = {"yyyy.MM.dd"})
     private Date dateOfBirth;
-    @NotEmpty
+    @NotEmpty(message = "Поле 'место рождения' не может быть пустым")
     @Size(max = 300)
     private String placeOfBirth;
-    @NotEmpty
+    @NotEmpty(message = "Поле 'место проживания' не может быть пустым")
     @Size(max = 300)
     private String placeOfResidence;
     @Size(max = 70)
     private String occupation;
-    @NotEmpty
+    @NotEmpty(message = "Поле 'гражданский статус' не может быть пустым")
     @Size(max = 10)
     private String maritalStatus;
     @Size(max = 70)
@@ -71,7 +74,10 @@ public class Conscript {
     }
 
     public String getFullname() {
-        return name + " " + patronymic + " " + surname;
+        if (patronymic == null || patronymic.isEmpty()) {
+            return "%s %s".formatted(name, surname);
+        }
+        return "%s %s %s".formatted(name, patronymic, surname);
     }
 
     public String getSeriesAndNumber() {

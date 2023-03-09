@@ -5,6 +5,7 @@ import com.nm.Militaryoffice.repository.PripisnoeSvidetelstvoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class PripisnoeSvidetelstvoService {
@@ -16,5 +17,24 @@ public class PripisnoeSvidetelstvoService {
 
     public Optional<PripisnoeSvidetelstvo> findBySeriesAndNumber(String seriesAndNumber) {
         return pripisnoeSvidetelstvoRepository.findBySeriesAndNumber(seriesAndNumber);
+    }
+
+    protected String generateSeriesAndNumber() {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < 8; ++i) {
+            boolean isGenerateSymbol = new Random().nextBoolean();
+            if (isGenerateSymbol) {
+                result.append((char) new Random().nextInt('А' + 30));
+            } else {
+                result.append(new Random().nextInt(0, 9));
+            }
+        }
+
+        return result.toString();
+    }
+
+    public void createPripisnoeSvidetelstvo(PripisnoeSvidetelstvo pripisnoeSvidetelstvo, long conscriptId) {
+        String seriesAndNumber = generateSeriesAndNumber();
+        pripisnoeSvidetelstvoRepository.save(pripisnoeSvidetelstvo, seriesAndNumber, conscriptId);
     }
 }
