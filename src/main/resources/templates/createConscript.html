@@ -12,7 +12,7 @@
     <main class="main">
         <div class="container">
             <h4 class="text-center mt-3">Создание записи о призывнике</h4>
-            <form th:action="@{/conscript}" th:object="${conscript}" method="POST">
+            <form th:action="@{/conscript/create}" th:object="${conscript}" method="POST">
                 <div class="form-group col-5">
                     <div class="errors" th:if="${#fields.hasAnyErrors()}">
                         <h5 class="form-error">Ошибка!</h5>
