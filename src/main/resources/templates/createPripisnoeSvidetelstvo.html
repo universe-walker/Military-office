@@ -15,24 +15,24 @@
             <form th:action="@{/conscript/__${conscriptId}__/create/pripisnoe}" th:object="${pripisnoe}" method="POST">
                 <div class="form-group col-5">
                     <div class="mb-3">
-                        <label for="healthCategory" class="form-label">Категория годности</label>
-                        <input id="healthCategory" name="healthCategory" type="text" class="form-control">
+                        <label for="healthCategory" class="form-label">Категория годности*</label>
+                        <input required id="healthCategory" name="healthCategory" type="text" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="whoIssued" class="form-label">Кто рассматривал</label>
-                        <input id="whoIssued" name="whoIssued" type="text" class="form-control">
+                        <label for="whoIssued" class="form-label">Кто рассматривал*</label>
+                        <input required id="whoIssued" name="whoIssued" type="text" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="commissionerFullname" class="form-label">ФИО коммиссара</label>
-                        <input id="commissionerFullname" name="commissionerFullname" type="text" class="form-control">
+                        <label for="commissionerFullname" class="form-label">ФИО коммиссара*</label>
+                        <input required id="commissionerFullname" name="commissionerFullname" type="text" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="issueDate" class="form-label">Дата рассмотрения</label>
-                        <input id="issueDate" name="issueDate" type="date" class="form-control">
+                        <label for="issueDate" class="form-label">Дата рассмотрения*</label>
+                        <input required id="issueDate" name="issueDate" type="date" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="dateOfAppearance" class="form-label">Следуящая дата явки</label>
-                        <input id="dateOfAppearance" name="dateOfAppearance" type="date" class="form-control">
+                        <label for="dateOfAppearance" class="form-label">Следуящая дата явки*</label>
+                        <input required id="dateOfAppearance" name="dateOfAppearance" type="date" class="form-control">
                     </div>
 
                     <button class="btn btn-success mb-3" type="submit">Создать</button>
