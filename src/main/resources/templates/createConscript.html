@@ -17,48 +17,50 @@
                     <div class="errors" th:if="${#fields.hasAnyErrors()}">
                         <h5 class="form-error">Ошибка!</h5>
                         <ul th:each="err : ${#fields.allErrors()}">
-                            <li th:text="${err}" class="form-error" />
+                            <li th:text="${err}" class="form-error"></li>
                         </ul>
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label">Имя</label>
-                        <input id="name" name="name" type="text" class="form-control">
+                        <label for="name" class="form-label">Имя*</label>
+                        <input required id="name" name="name" type="text" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="surname" class="form-label">Фамилия</label>
-                        <input id="surname" name="surname" type="text" class="form-control">
+                        <label for="surname" class="form-label">Фамилия*</label>
+                        <input required id="surname" name="surname" type="text" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="patronymic" class="form-label">Отчество</label>
                         <input id="patronymic" name="patronymic" type="text" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="passport" class="form-label">Паспорт</label>
-                        <input id="passport" name="passport" type="text" class="form-control">
+                        <label for="passport" class="form-label">Паспорт*</label>
+                        <input required id="passport" name="passport" type="text" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="gender" class="form-label">Пол</label>
-                        <input id="gender" name="gender" type="text" class="form-control">
+                        <input checked type="radio" id="genderMale" name="gender" class="form-check-input" value="м">
+                        <label for="genderMale" class="form-check-label">Мужской</label>
+                        <input type="radio" id="genderWoman" name="gender" class="form-check-input" value="ж">
+                        <label for="genderWoman" class="form-check-label">Женский</label>
                     </div>
                     <div class="mb-3">
-                        <label for="birthday" class="form-label">Дата рождения</label>
-                        <input id="birthday" name="dateOfBirth" type="date" class="form-control">
+                        <label for="birthday" class="form-label">Дата рождения*</label>
+                        <input required id="birthday" name="dateOfBirth" type="date" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="place_of_birth" class="form-label">Место рождения</label>
-                        <input id="place_of_birth" name="placeOfBirth" type="text" class="form-control">
+                        <label for="place_of_birth" class="form-label">Место рождения*</label>
+                        <input required id="place_of_birth" name="placeOfBirth" type="text" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="place_of_residence" class="form-label">Место жительства</label>
-                        <input id="place_of_residence" name="placeOfResidence" type="text" class="form-control">
+                        <label for="place_of_residence" class="form-label">Место жительства*</label>
+                        <input required id="place_of_residence" name="placeOfResidence" type="text" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="occupation" class="form-label">Род деятельности</label>
                         <input id="occupation" name="occupation" type="text" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label for="marital_status" class="form-label">Статус ?</label>
-                        <input id="marital_status" name="maritalStatus" type="text" class="form-control">
+                        <label for="marital_status" class="form-label">Семейный статус*</label>
+                        <input required id="marital_status" name="maritalStatus" type="text" class="form-control">
                     </div>
                     <div class="mb-3">
                         <label for="sport_category" class="form-label">Спортивные категории</label>
